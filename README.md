@@ -14,3 +14,7 @@ Create a drawer instance and assign a scroll view that should be scrolled by the
     // Create Big Int Decimal
     BigInt * bigIntHexValue = [[BigInt alloc] initWithString:@"9823864523645672345723645" andRadix:10];
     
+Hashing
+
+    -(NSString *)sha256:(BigInt *)input;
+    -(NSString *)sha512:(BigInt *)input;
