@@ -2160,4 +2160,40 @@ static int primesBelow2000[] = {
 	return true;
 }
 
+-(NSString *)sha256:(NSString *)input{
+    uint rawData = *[self getData];
+    NSString *dataString = [NSString stringWithFormat:@"%02x", rawData];
+    
+    NSData *bytes = [dataString hexToBytes];
+    unsigned char result[CC_SHA256_DIGEST_LENGTH];
+    CC_SHA256(bytes.bytes, bytes.length, result);
+    
+    NSMutableString* output = [NSMutableString  stringWithCapacity:CC_SHA256_DIGEST_LENGTH];
+    for(int i = 0; i < CC_SHA256_DIGEST_LENGTH; i++)
+        [output appendFormat:@"%02x", result[i]];
+    return [output lowercaseString];
+}
+
+-(NSString *)sha512:(NSString *)input{
+    uint rawData = *[self getData];
+    NSString *dataString = [NSString stringWithFormat:@"%02x", rawData];
+    
+    NSData *bytes = [dataString hexToBytes];
+    unsigned char result[CC_SHA512_DIGEST_LENGTH];
+    CC_SHA512(bytes.bytes, bytes.length, result);
+    
+    NSMutableString* output = [NSMutableString  stringWithCapacity:CC_SHA512_DIGEST_LENGTH];
+    for(int i = 0; i < CC_SHA512_DIGEST_LENGTH; i++)
+        [output appendFormat:@"%02x", result[i]];
+    return [output lowercaseString];
+}
+
+-(NSString *)sha256{
+    return [self sha256:[self toStringWithRadix:16]];
+}
+
+-(NSString *)sha512{
+    return [self sha256:[self toStringWithRadix:16]];
+}
+
 @end

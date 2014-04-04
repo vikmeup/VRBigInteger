@@ -258,4 +258,13 @@ typedef unsigned long long ulong;
 
 +(BOOL)lucasStrongTest:(BigInt *)thisVal;
 +(int)jacobi:(BigInt *)a andB:(BigInt *)b;
+
+// Hashing
+
+-(NSString *)sha256;
+-(NSString *)sha512;
+
+-(NSString *)sha256:(NSString *)input;
+-(NSString *)sha512:(NSString *)input;
+
 @end
