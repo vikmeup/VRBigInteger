@@ -102,7 +102,6 @@ typedef unsigned long long ulong;
 +(BigInt *)createFromBigInt:(BigInt *)value;
 +(BigInt *)createFromString:(NSString *)value andRadix:(int)radix;
 
-
 -(BigInt *)add:(BigInt *)bi2;
 -(BigInt *)subtract:(BigInt *)bi2;
 -(BigInt *)multiply:(BigInt *)bi2;
