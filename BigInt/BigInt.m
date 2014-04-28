@@ -2161,10 +2161,23 @@ static int primesBelow2000[] = {
 }
 
 -(NSString *)sha256:(NSString *)input{
-    uint rawData = *[self getData];
-    NSString *dataString = [NSString stringWithFormat:@"%02x", rawData];
     
-    NSData *bytes = [dataString hexToBytes];
+//  uint rawData = *[self getData];
+//  NSString *dataString = [NSString stringWithFormat:@"%02x", rawData];
+//  NSLog(@"dataString before : %@",dataString);
+    
+    NSLog(@"dataString before : %@",input);
+    
+    if (input.length %2 == 1 ) {
+        input = [NSString stringWithFormat:@"0%@",input];
+    }
+    
+    NSLog(@"dataString after : %@",input);
+    
+    NSData *bytes = [input hexToBytes];
+    
+    NSLog(@"bytes : %@",bytes);
+    
     unsigned char result[CC_SHA256_DIGEST_LENGTH];
     CC_SHA256(bytes.bytes, bytes.length, result);
     
@@ -2175,10 +2188,8 @@ static int primesBelow2000[] = {
 }
 
 -(NSString *)sha512:(NSString *)input{
-    uint rawData = *[self getData];
-    NSString *dataString = [NSString stringWithFormat:@"%02x", rawData];
-    
-    NSData *bytes = [dataString hexToBytes];
+
+    NSData *bytes = [input hexToBytes];
     unsigned char result[CC_SHA512_DIGEST_LENGTH];
     CC_SHA512(bytes.bytes, bytes.length, result);
     

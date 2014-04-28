@@ -73,7 +73,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define MAX_LENGTH 70
+#define MAX_LENGTH 1024
 
 typedef unsigned long long ulong;
 
@@ -82,7 +82,7 @@ typedef unsigned long long ulong;
 	@public 
 	int dataLength;
 	uint data[MAX_LENGTH]; // stores bytes from the Big Integer
-	
+    
 }
 
 @property (nonatomic) int dataLength;
@@ -101,6 +101,7 @@ typedef unsigned long long ulong;
 +(BigInt *)createFromULong:(ulong)value;
 +(BigInt *)createFromBigInt:(BigInt *)value;
 +(BigInt *)createFromString:(NSString *)value andRadix:(int)radix;
+
 
 -(BigInt *)add:(BigInt *)bi2;
 -(BigInt *)subtract:(BigInt *)bi2;
