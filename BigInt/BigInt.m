@@ -1679,12 +1679,22 @@ static int primesBelow2000[] = {
 		NSLog(@"Is Prime: %s (%s)", [[result toStringWithRadix:16] UTF8String], [done ? @"Yes" : @"No" UTF8String]);
 #endif
 		
+        
 		[whilePool release];
 	}
 	
 	[result retain];
 	[pool release];
 	return [result autorelease];	
+}
+
++(BigInt *)generateNumberWithBits:(int)bits
+{
+	BigInt *result = [BigInt create];
+	[result getRandomBits: bits];
+    [result setData:([result getDataAtIndex:0] | 0x01) atIndex:0];
+    
+    return result;
 }
 
 
