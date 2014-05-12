@@ -1693,10 +1693,8 @@ static int primesBelow2000[] = {
 	BigInt *result = [BigInt create];
 	[result getRandomBits: bits];
     [result setData:([result getDataAtIndex:0] | 0x01) atIndex:0];
-    
     return result;
 }
-
 
 //***********************************************************************
 // Performs the calculation of the kth term in the Lucas Sequence.
@@ -2172,21 +2170,11 @@ static int primesBelow2000[] = {
 
 -(NSString *)sha256:(NSString *)input{
     
-//  uint rawData = *[self getData];
-//  NSString *dataString = [NSString stringWithFormat:@"%02x", rawData];
-//  NSLog(@"dataString before : %@",dataString);
-    
-    NSLog(@"dataString before : %@",input);
-    
     if (input.length %2 == 1 ) {
         input = [NSString stringWithFormat:@"0%@",input];
     }
     
-    NSLog(@"dataString after : %@",input);
-    
     NSData *bytes = [input hexToBytes];
-    
-    NSLog(@"bytes : %@",bytes);
     
     unsigned char result[CC_SHA256_DIGEST_LENGTH];
     CC_SHA256(bytes.bytes, bytes.length, result);
